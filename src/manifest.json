@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "SFgo Extension",
+  "version": "0.1.2",
+  "description": "Extends SFgo with lap time, sector time, and delta overlays on the live timing screen.",
+  "content_scripts": [
+    {
+      "matches": ["https://cdn.sfgo.jp/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["page-hook.js"],
+      "matches": ["https://cdn.sfgo.jp/*"]
+    }
+  ],
+  "host_permissions": ["https://cdn.sfgo.jp/*", "https://dynamodb.ap-northeast-1.amazonaws.com/*"]
+}
