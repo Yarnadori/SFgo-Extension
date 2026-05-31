@@ -83,7 +83,11 @@ function applyTelemetrySync(responseText: string, requestBody: string, capturedA
 
 startOverlay();
 
-const script = document.createElement("script");
-script.src = chrome.runtime.getURL("page-hook.js");
-script.onload = () => script.remove();
-(document.documentElement ?? document.head).appendChild(script);
+try {
+  const script = document.createElement("script");
+  script.src = chrome.runtime.getURL("page-hook.js");
+  script.onload = () => script.remove();
+  (document.documentElement ?? document.head).appendChild(script);
+} catch {
+  // Extension context invalidated (extension reloaded while page was open)
+}
